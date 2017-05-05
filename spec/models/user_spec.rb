@@ -1,5 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe User do
+  it { should have_many(:playlists) }
+
+  describe 'before create callback' do
+    it 'sets an uuid in user instance' do
+      user = create(:user)
+
+      expect(user.uuid).not_to be_nil
+    end
+  end
 end
