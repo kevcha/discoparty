@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.3.3'
 
+gem 'active_model_serializers'
 gem 'ejs'
 gem 'jquery-rails'
 gem 'pg'
