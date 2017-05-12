@@ -65,6 +65,7 @@ GEM
     dotenv-rails (2.2.1)
       dotenv (= 2.2.1)
       railties (>= 3.2, < 5.2)
+    ejs (1.1.1)
     erubis (2.7.0)
     execjs (2.7.0)
     factory_girl (4.8.0)
@@ -222,6 +223,7 @@ DEPENDENCIES
   capybara-webkit
   database_cleaner
   dotenv-rails
+  ejs
   factory_girl_rails
   jquery-rails
   listen (~> 3.0.5)
