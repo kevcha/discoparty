@@ -1,4 +1,12 @@
-<h2><%= @playlist.name %></h2>
+<section class="playlist" data-id="<%= @playlist.id %>">
+  <h2><%= @playlist.name %></h2>
 
-<h3>Search for a track</h3>
-<input type="text" id="search" placeholder="Amy Whinehouse Rehab">
+  <h3>Search for a track</h3>
+  <input type="text" id="search" placeholder="Amy Whinehouse Rehab">
+
+  <ul>
+    <% @playlist.tracks.each do |track| %>
+      <li><%= track.title %></li>
+    <% end %>
+  </ul>
+</section>
