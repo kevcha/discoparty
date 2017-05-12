@@ -10,9 +10,18 @@ $(function() {
       };
     },
     onSelect: function(track) {
-      // TODO:
-      // * Add this track to playlist
-      // * Re render tracklist
+      var playlistId = $('.playlist').data('id');
+      $.ajax({
+        type: 'POST',
+        url: `/api/v1/playlists/${playlistId}/tracks`,
+        data: { track: track.data },
+        success: function(track) {
+          console.log('Ok');
+        },
+        error: function(error) {
+          console.log('An error happened :(');
+        }
+      });
     },
     formatResult: function(track) {
       return JST['templates/track']({ track: track.data });
