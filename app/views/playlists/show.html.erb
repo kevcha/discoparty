@@ -1,16 +1,25 @@
 <section class="playlist" data-id="<%= @playlist.id %>">
-  <h2><%= @playlist.name %></h2>
 
-  <h3>Search for a track</h3>
-  <input type="text" id="search" placeholder="Amy Whinehouse Rehab">
+  <h1><%= @playlist.name %></h1>
 
-  <ul>
-    <% @playlist.tracks.each do |track| %>
-      <li><%= track.title %></li>
-    <% end %>
-  </ul>
+  <div class="search-track">
+    <input type="text" id="search" placeholder="Search for a track to add...">
+  </div>
 
-  <a href="#" id="js-play">Play</a>
+  <div class="playlist-tracks">
+    <header>
+      <h3>Tracklist</h3>
+      <button class="small" id="js-play">Play</button>
+    </header>
+    <ul class="tracks">
+      <% @playlist.tracks.each do |track| %>
+        <li class="track">
+          <img src="<%= track.image_url %>">
+          <p><%= track.title %></p>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 
   <div id="embed-player-wrapper"></div>
 </section>

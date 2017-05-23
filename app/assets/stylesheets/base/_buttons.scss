@@ -37,4 +37,8 @@
       background-color: $action-color;
     }
   }
+
+  &.small {
+    padding: $small-spacing / 2 $base-spacing / 2;
+  }
 }

@@ -1,0 +1,50 @@
+.playlists-new, .playlists-create {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.playlists-new, .playlists-create {
+  header {
+    padding: modular-scale(1);
+    text-align: center;
+
+    h1 {
+      margin: modular-scale(2);
+    }
+  }
+
+  img {
+    filter: brightness(0.3);
+    width: 150px;
+  }
+
+  section {
+    flex-grow: 1;
+    margin: 0 auto;
+    max-width: 700px;
+    padding: 0 modular-scale(1);
+    text-align: center;
+    width: 100%;
+  }
+
+  form {
+    display: flex;
+
+    .input {
+      flex-grow: 1;
+    }
+
+    input {
+      height: 50px;
+    }
+
+    input[type="submit"] {
+      margin-left: modular-scale(1);
+    }
+  }
+
+  footer {
+    text-align: center;
+  }
+}

@@ -17,17 +17,27 @@ $small-spacing: $base-spacing / 2;
 $base-z-index: 0;
 
 // Colors
+$primary: #1565c0;
 $blue: #1565c0;
 $dark-gray: #333;
 $medium-gray: #999;
 $light-gray: #ddd;
 
+// Colors
+$green: #C7EFCF;
+$orange: #FE5F55;
+$red: #E63462;
+$black: #333745;
+$white: #EEF5DB;
+
+$bg-color: $green;
+
 // Font Colors
-$base-font-color: $dark-gray;
-$action-color: $blue;
+$base-font-color: lighten($black, 10%);
+$action-color: $red;
 
 // Border
-$base-border-color: $light-gray;
+$base-border-color: darken($bg-color, 5%);
 $base-border: 1px solid $base-border-color;
 
 // Background Colors

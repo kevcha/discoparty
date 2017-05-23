@@ -1,0 +1,64 @@
+.playlists-show {
+  h1 {
+    text-align: center;
+  }
+
+  section {
+    margin: 0 auto;
+    max-width: 700px;
+    padding: 0 modular-scale(1);
+    width: 100%;
+  }
+
+  .autocomplete-suggestions {
+    border: 1px solid shade($base-border-color, 10%);
+    margin-top: 3px;
+  }
+
+  .autocomplete-suggestion {
+    align-items: center;
+    background: darken($bg-color, 3%);
+    display: flex;
+    padding: modular-scale(1);
+
+    p {
+      margin-left: modular-scale(1);
+    }
+  }
+
+  .autocomplete-selected {
+    background: darken($bg-color, 10%);
+  }
+
+  .search-track {
+    margin-bottom: modular-scale(4);
+  }
+
+  header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: modular-scale(0);
+
+    h3 {
+      margin-bottom: 0;
+    }
+  }
+
+  .track {
+    align-items: center;
+    border-top: 1px solid darken($bg-color, 10%);
+    display: flex;
+    padding: modular-scale(0);
+
+    img {
+      border-radius: 50%;
+      height: 50px;
+      width: 50px;
+    }
+
+    p {
+      margin: 0 0 0 modular-scale(1);
+    }
+  }
+}
