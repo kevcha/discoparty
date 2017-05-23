@@ -13,7 +13,7 @@
     </header>
     <ul class="tracks">
       <% @playlist.tracks.each do |track| %>
-        <li class="track">
+        <li class="track" data-id="<%= track.id %>">
           <img src="<%= track.image_url %>">
           <p><%= track.title %></p>
         </li>

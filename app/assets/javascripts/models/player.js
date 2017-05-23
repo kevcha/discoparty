@@ -21,6 +21,8 @@ class Player {
       let track = this.currentTrack();
       this.playing = true;
       this.embedPlayer.initializeWith(track);
+      $('.track').removeClass('playing');
+      $(`.track[data-id=${track.id}]`).addClass('playing');
     }
   }
 

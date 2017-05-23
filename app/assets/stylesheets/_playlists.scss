@@ -50,6 +50,7 @@
     border-top: 1px solid darken($bg-color, 10%);
     display: flex;
     padding: modular-scale(0);
+    transition: all ease 0.3s;
 
     img {
       border-radius: 50%;
@@ -59,6 +60,12 @@
 
     p {
       margin: 0 0 0 modular-scale(1);
+    }
+
+    &.playing {
+      background: $white;
+      border-top: none;
+      transform: scale(1.1);
     }
   }
 }
