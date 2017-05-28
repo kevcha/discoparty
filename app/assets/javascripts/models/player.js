@@ -41,10 +41,18 @@ class Player {
   }
 
   next() {
+    this.removeCurrent();
     if (this.hasNext()) {
       this.index += 1;
       this.play();
     }
+  }
+
+  removeCurrent() {
+    let track = this.currentTrack();
+    let $track = $(`.track[data-id=${track.id}]`);
+    $track.removeClass('playing');
+    $track.addClass('played');
   }
 
   hasNext() {

@@ -67,5 +67,12 @@
       border-top: none;
       transform: scale(1.1);
     }
+
+    &.played {
+      border: none;
+      height: 0;
+      overflow: hidden;
+      padding: 0;
+    }
   }
 }
