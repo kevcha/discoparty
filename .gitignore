@@ -4,3 +4,5 @@
 !/log/.keep
 !/tmp/.keep
 coverage/*
+/public/packs
+/node_modules
