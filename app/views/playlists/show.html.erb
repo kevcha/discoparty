@@ -1,25 +1,6 @@
-<section class="playlist" data-id="<%= @playlist.id %>">
+<%= content_for(:script) do %>
+  <%= javascript_pack_tag 'application' %>
+<% end %>
 
-  <h1><%= @playlist.name %></h1>
-
-  <div class="search-track">
-    <input type="text" id="search" placeholder="Search for a track to add...">
-  </div>
-
-  <div class="playlist-tracks">
-    <header>
-      <h3>Tracklist</h3>
-      <button class="small" id="js-play">Play</button>
-    </header>
-    <ul class="tracks">
-      <% @playlist.tracks.each do |track| %>
-        <li class="track" data-id="<%= track.id %>">
-          <img src="<%= track.image_url %>">
-          <p><%= track.title %></p>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-
-  <div id="embed-player-wrapper"></div>
+<section id="playlist" data-id="<%= @playlist.id %>">
 </section>
