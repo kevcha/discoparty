@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resource :search, only: :show
-      resources :playlists, only: [] do
+      resources :playlists, only: [:show] do
         resources :tracks, only: [:index, :create, :update, :destroy]
       end
     end
