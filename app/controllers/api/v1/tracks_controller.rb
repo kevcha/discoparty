@@ -1,5 +1,6 @@
 class Api::V1::TracksController < ApplicationController
   before_action :set_playlist
+  skip_before_action :verify_authenticity_token, only: :create
 
   def index
     render json: @playlist.tracks

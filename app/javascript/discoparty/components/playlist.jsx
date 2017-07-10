@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Track from './track'
+import Autocomplete from 'react-autocomplete'
 
 class Playlist extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      playlist: {
-        tracks: []
-      }
+      playlist: { tracks: [] },
+      tracks: [],
+      value: ''
     };
   }
 
@@ -26,7 +27,37 @@ class Playlist extends Component {
         <h1>{this.state.playlist.name}</h1>
 
         <div className="search-track">
-          <input type="text" id="search" placeholder="Search for a track to add..." />
+          <Autocomplete
+            inputProps={{ id: 'search', placeholder: 'Search for a track to add...' }}
+            items={this.state.tracks}
+            value={this.state.value}
+            getItemValue={(item) => item.title}
+            wrapperStyle={{ display: 'block', position: 'relative' }}
+            menuStyle={{ background: 'transparent', position: 'absolute', top: '45px', left: 0, width: '100%' }}
+            renderItem={(item, isHighlighted) => (
+              <div className={`autocomplete-suggestion ${isHighlighted ? 'autocomplete-selected' : ''}`} key={item.provider_track_id}>
+                <img src={item.image_url} />
+                <p>{item.title}</p>
+              </div>
+            )}
+            onSelect={(value, item) => {
+              axios.post(`/api/v1/playlists/${this.props.id}/tracks`, {
+                track: item
+              });
+              this.setState({ value: '', tracks: [] });
+            }}
+            onChange={(event, value) => {
+              this.setState({ value });
+              if (value != '') {
+                axios.get(`/api/v1/search?query=${value}`)
+                  .then(response => {
+                    this.setState({ tracks: response.data });
+                  });
+              } else {
+                this.setState({ tracks: [] });
+              }
+            }}
+          />
         </div>
 
         <div className="playlist-tracks">
