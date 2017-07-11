@@ -28,6 +28,7 @@
     "react": "^15.6.1",
     "react-autocomplete": "^1.5.9",
     "react-dom": "^15.6.1",
+    "react-flip-move": "^2.9.14",
     "react-player": "^0.18.0",
     "resolve-url-loader": "^2.1.0",
     "sass-loader": "^6.0.6",

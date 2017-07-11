@@ -3968,6 +3968,10 @@ react-dom@^15.6.1:
     object-assign "^4.1.0"
     prop-types "^15.5.10"
 
+react-flip-move@^2.9.14:
+  version "2.9.14"
+  resolved "https://registry.yarnpkg.com/react-flip-move/-/react-flip-move-2.9.14.tgz#3b60e44493a4bbe115a8c3d678b844776bbab453"
+
 react-player@^0.18.0:
   version "0.18.0"
   resolved "https://registry.yarnpkg.com/react-player/-/react-player-0.18.0.tgz#20b3ffcfaa98c8f2dbde16f24b6359f367ddf4e0"
