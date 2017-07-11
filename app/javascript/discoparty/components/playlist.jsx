@@ -79,6 +79,8 @@ class Playlist extends Component {
             url={this.state.url}
             playing={this.state.playing}
             onEnded={this.endCallback}
+            width={1}
+            height={1}
           />
         </div>
       </div>
