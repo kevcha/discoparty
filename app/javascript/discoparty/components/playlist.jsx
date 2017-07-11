@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import ReactPlayer from 'react-player'
+import ReactPlayer from 'react-player';
 import axios from 'axios';
 import Track from './track';
 import YoutubeAutocomplete from './youtube-autocomplete';
+import FlipMove from 'react-flip-move';
 
 class Playlist extends Component {
   constructor(props) {
@@ -67,11 +68,11 @@ class Playlist extends Component {
             <h3>Tracklist</h3>
             <button className="small" onClick={this.togglePlay}>{buttonLabel}</button>
           </header>
-          <ul className="tracks">
+          <FlipMove duration={250}>
             {this.state.playlist.tracks.map((track) => {
               return <Track playing={this.isPlaying(track)} track={track} key={track.id} />;
             })}
-          </ul>
+          </FlipMove>
         </div>
 
         <div id="embed-player-wrapper">
