@@ -44,6 +44,8 @@ class Playlist extends Component {
       let index = this.state.index + 1;
       this.setState({ index: index });
       this.loadTrack();
+    } else {
+      this.setState({ playing: false });
     }
   }
 
