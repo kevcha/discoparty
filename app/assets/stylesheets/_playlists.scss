@@ -65,6 +65,7 @@
     &.playing {
       background: $white;
       border-top: none;
+      border-radius: 50px;
       transform: scale(1.1);
     }
 
