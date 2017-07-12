@@ -10,9 +10,11 @@ class Api::V1::TracksController < ApplicationController
     @track = Track.new(track_params)
 
     if @track.save
+      PlaylistChannel.broadcast_to(@playlist, {
+        playlist: PlaylistSerializer.new(@playlist).as_json
+      })
       render json: @track, status: :created
     else
-      binding.pry
       head :bad_request
     end
   end

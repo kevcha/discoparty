@@ -18,6 +18,7 @@ class YoutubeAutocomplete extends Component {
           inputProps={{ id: 'search', placeholder: 'Search for a track to add...' }}
           items={this.state.tracks}
           value={this.state.value}
+          open={true}
           getItemValue={(item) => item.title}
           wrapperStyle={{ display: 'block', position: 'relative' }}
           menuStyle={{ background: 'transparent', position: 'absolute', top: '45px', left: 0, width: '100%' }}

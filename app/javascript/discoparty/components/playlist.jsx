@@ -16,7 +16,20 @@ class Playlist extends Component {
     };
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
+    this.fetchPlaylist();
+
+    App.track = App.cable.subscriptions.create({
+        channel: "PlaylistChannel",
+        id: this.props.id
+    }, {
+      received: (data) => {
+        this.setState({ playlist: data.playlist });
+      }
+    });
+  }
+
+  fetchPlaylist = () => {
     axios.get(`/api/v1/playlists/${this.props.id}`)
       .then(response => {
         const playlist = response.data.playlist;
