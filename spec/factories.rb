@@ -14,4 +14,9 @@ FactoryGirl.define do
 
   factory :user do
   end
+
+  factory :upvote do
+    user
+    track
+  end
 end

@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe Track do
   it { should belong_to(:playlist) }
+  it { should have_many(:upvotes).dependent(:destroy) }
 
   it { should validate_presence_of(:title) }
   it { should validate_presence_of(:provider) }
