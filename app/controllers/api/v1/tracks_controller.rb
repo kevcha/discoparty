@@ -1,7 +1,7 @@
 class Api::V1::TracksController < ApplicationController
-  before_action :set_playlist
+  before_action :set_playlist, except: [:upvote, :downvote]
   before_action :set_track, only: [:upvote, :downvote]
-  skip_before_action :verify_authenticity_token, only: :create
+  skip_before_action :verify_authenticity_token, only: [:create, :downvote, :upvote]
 
   def index
     render json: @playlist.tracks
@@ -11,9 +11,7 @@ class Api::V1::TracksController < ApplicationController
     @track = Track.new(track_params)
 
     if @track.save
-      PlaylistChannel.broadcast_to(@playlist, {
-        playlist: PlaylistSerializer.new(@playlist).as_json
-      })
+      broadcast
       render json: @track, status: :created
     else
       head :bad_request
@@ -42,15 +40,25 @@ class Api::V1::TracksController < ApplicationController
 
   def upvote
     current_user.upvotes.create({ track: @track })
+    @playlist = @track.playlist
+    broadcast
     head :created
   end
 
   def downvote
-    current_user.upvotes.where(track: @track).destroy
+    current_user.upvotes.find_by(track: @track).destroy
+    @playlist = @track.playlist
+    broadcast
     head :no_content
   end
 
   private
+
+  def broadcast
+    PlaylistChannel.broadcast_to(@playlist, {
+      playlist: PlaylistSerializer.new(@playlist, scope: current_user).as_json
+    });
+  end
 
   def track_params
     params

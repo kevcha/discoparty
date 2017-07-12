@@ -59,7 +59,29 @@
     }
 
     p {
+      flex-grow: 1;
       margin: 0 0 0 modular-scale(1);
+    }
+
+    .upvote {
+      align-items: center;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      transition: transform ease 0.2s;
+      padding: 10px;
+
+      .fa {
+        font-size: 1.3em;
+      }
+
+      &:hover {
+        transform: scale(1.2);
+      }
+
+      &.upvoted {
+        color: $red;
+      }
     }
 
     &.playing {
