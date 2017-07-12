@@ -7,6 +7,13 @@ Rails.application.routes.draw do
       resources :playlists, only: [:show] do
         resources :tracks, only: [:index, :create, :update, :destroy]
       end
+
+      resources :tracks, only: [] do
+        member do
+          post :vote, to: 'tracks#upvote'
+          delete :vote, to: 'tracks#downvote'
+        end
+      end
     end
   end
 

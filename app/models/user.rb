@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :playlists
+  has_many :upvotes
 
   validates :uuid, presence: true
 

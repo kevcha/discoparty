@@ -1,5 +1,6 @@
 class Api::V1::TracksController < ApplicationController
   before_action :set_playlist
+  before_action :set_track, only: [:upvote, :downvote]
   skip_before_action :verify_authenticity_token, only: :create
 
   def index
@@ -39,6 +40,16 @@ class Api::V1::TracksController < ApplicationController
     end
   end
 
+  def upvote
+    current_user.upvotes.create({ track: @track })
+    head :created
+  end
+
+  def downvote
+    current_user.upvotes.where(track: @track).destroy
+    head :no_content
+  end
+
   private
 
   def track_params
@@ -51,6 +62,10 @@ class Api::V1::TracksController < ApplicationController
         :image_url,
         :duration
       ).merge(playlist: @playlist)
+  end
+
+  def set_track
+    @track = Track.find(params[:id])
   end
 
   def set_playlist
