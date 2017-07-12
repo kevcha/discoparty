@@ -21,7 +21,7 @@ class YoutubeAutocomplete extends Component {
           open={true}
           getItemValue={(item) => item.title}
           wrapperStyle={{ display: 'block', position: 'relative' }}
-          menuStyle={{ background: 'transparent', position: 'absolute', top: '45px', left: 0, width: '100%' }}
+          menuStyle={{ background: 'transparent', position: 'absolute', top: '45px', left: 0, width: '100%', zIndex: 1 }}
           renderItem={(item, isHighlighted) => (
             <div className={`autocomplete-suggestion ${isHighlighted ? 'autocomplete-selected' : ''}`} key={item.provider_track_id}>
               <img src={item.image_url} />
