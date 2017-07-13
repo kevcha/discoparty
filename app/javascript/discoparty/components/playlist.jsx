@@ -12,7 +12,6 @@ class Playlist extends Component {
       playlist: { tracks: [] },
       url: '',
       playing: false,
-      index: 0,
       playedTracks: []
     };
   }
@@ -43,9 +42,8 @@ class Playlist extends Component {
 
   loadTrack = () => {
     if (this.state.playlist.tracks.length > 0) {
-      let index = this.state.index;
       let tracks = this.state.playlist.tracks;
-      let videoId = tracks[index].provider_track_id;
+      let videoId = tracks[0].provider_track_id;
       let url = `https://www.youtube.com/watch?v=${videoId}`;
       this.setState({ url: url });
     }
@@ -58,13 +56,11 @@ class Playlist extends Component {
 
   endCallback = () => {
     let playedTracks = this.state.playedTracks;
-    let trackId = this.state.playlist.tracks[this.state.index].id;
+    let trackId = this.state.playlist.tracks[0].id;
     playedTracks.push(trackId);
     this.setState({ playedTracks: playedTracks });
     this.removePlayedTracks();
-    if (this.state.index < this.state.playlist.tracks.length - 1) {
-      let index = this.state.index + 1;
-      this.setState({ index: index });
+    if (this.state.playlist.tracks.length > 0) {
       this.loadTrack();
     } else {
       this.setState({ playing: false });
@@ -72,7 +68,7 @@ class Playlist extends Component {
   }
 
   isPlaying = (track) => {
-    let current_track = this.state.playlist.tracks[this.state.index];
+    let current_track = this.state.playlist.tracks[0];
     return track == current_track && this.state.playing;
   }
 
