@@ -12,7 +12,8 @@ class Playlist extends Component {
       playlist: { tracks: [] },
       url: '',
       playing: false,
-      index: 0
+      index: 0,
+      playedTracks: []
     };
   }
 
@@ -33,8 +34,9 @@ class Playlist extends Component {
   fetchPlaylist = () => {
     axios.get(`/api/v1/playlists/${this.props.id}`)
       .then(response => {
-        const playlist = response.data.playlist;
+        let playlist = response.data.playlist;
         this.setState({ playlist });
+        this.removePlayedTracks();
         this.loadTrack();
       });
   }
@@ -55,6 +57,11 @@ class Playlist extends Component {
   }
 
   endCallback = () => {
+    let playedTracks = this.state.playedTracks;
+    let trackId = this.state.playlist.tracks[this.state.index].id;
+    playedTracks.push(trackId);
+    this.setState({ playedTracks: playedTracks });
+    this.removePlayedTracks();
     if (this.state.index < this.state.playlist.tracks.length - 1) {
       let index = this.state.index + 1;
       this.setState({ index: index });
@@ -71,6 +78,14 @@ class Playlist extends Component {
 
   upvoted = (track) => {
     return track.upvoted.includes(parseInt(this.props.userId));
+  }
+
+  removePlayedTracks = () => {
+    let playlist = this.state.playlist;
+    playlist.tracks = playlist.tracks.filter((track) => {
+      return !this.state.playedTracks.includes(track.id);
+    });
+    this.setState({ playlist });
   }
 
   render() {
