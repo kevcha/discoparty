@@ -24,18 +24,24 @@ class Playlist extends Component {
         id: this.props.id
     }, {
       received: (data) => {
-        this.setState({ playlist: data.playlist });
+        this.updatePlaylist(data.playlist);
         this.loadTrack();
       }
     });
+  }
+
+  updatePlaylist = (playlist) => {
+    playlist.tracks = playlist.tracks.filter((track) => {
+      return !this.state.playedTracks.includes(track.id);
+    });
+    this.setState({ playlist });
   }
 
   fetchPlaylist = () => {
     axios.get(`/api/v1/playlists/${this.props.id}`)
       .then(response => {
         let playlist = response.data.playlist;
-        this.setState({ playlist });
-        this.removePlayedTracks();
+        this.updatePlaylist(playlist);
         this.loadTrack();
       });
   }
@@ -59,7 +65,7 @@ class Playlist extends Component {
     let trackId = this.state.playlist.tracks[0].id;
     playedTracks.push(trackId);
     this.setState({ playedTracks: playedTracks });
-    this.removePlayedTracks();
+    this.updatePlaylist(this.state.playlist);
     if (this.state.playlist.tracks.length > 0) {
       this.loadTrack();
     } else {
@@ -76,26 +82,31 @@ class Playlist extends Component {
     return track.upvoted.includes(parseInt(this.props.userId));
   }
 
-  removePlayedTracks = () => {
-    let playlist = this.state.playlist;
-    playlist.tracks = playlist.tracks.filter((track) => {
-      return !this.state.playedTracks.includes(track.id);
-    });
-    this.setState({ playlist });
+  hint = () => {
+    if (this.props.acl == 'server') {
+      return (<p className="sharable-link">Link : http://www.discoparty.com/parties/{this.props.id}</p>);
+    }
   }
 
   render() {
     let buttonLabel = this.state.playing ? 'Pause' : 'Play';
+
+    let content = '';
+    if (this.props.acl == 'server') {
+      content = <button className="small" onClick={this.togglePlay}>{buttonLabel}</button>;
+    }
+
     return (
       <div>
         <h1>{this.state.playlist.name}</h1>
+        {this.hint()}
 
         <YoutubeAutocomplete playlistId={this.props.id} />
 
         <div className="playlist-tracks">
           <header>
             <h3>Tracklist</h3>
-            <button className="small" onClick={this.togglePlay}>{buttonLabel}</button>
+            {content}
           </header>
           <FlipMove
             duration={300}

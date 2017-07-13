@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :playlists, only: [:new, :create, :show]
+  resources :parties, only: :show, path: :party
 
   namespace :api do
     namespace :v1 do

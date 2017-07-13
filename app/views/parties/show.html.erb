@@ -1,0 +1,5 @@
+<%= content_for(:script) do %>
+  <%= javascript_pack_tag 'application' %>
+<% end %>
+
+<section id="party" data-playlist-id="<%= @playlist.id %>" data-user-id="<%= current_user.id %>"></section>

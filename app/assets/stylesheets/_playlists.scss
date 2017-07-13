@@ -1,5 +1,12 @@
-.playlists-show {
+.playlists-show,
+.parties-show {
   h1 {
+    text-align: center;
+  }
+
+  .sharable-link {
+    color: lighten($base-font-color, 10%);
+    font-size: 0.9em;
     text-align: center;
   }
 

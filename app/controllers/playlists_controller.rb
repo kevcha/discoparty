@@ -1,6 +1,4 @@
 class PlaylistsController < ApplicationController
-  before_action :set_user
-
   def new
     @playlist = current_user.playlists.build
   end
@@ -26,12 +24,5 @@ class PlaylistsController < ApplicationController
       .require(:playlist)
       .permit(:name)
       .merge(user: current_user)
-  end
-
-  def set_user
-    if cookies[:auth_token].blank?
-      user = User.create
-      cookies.permanent[:auth_token] = user.uuid
-    end
   end
 end
