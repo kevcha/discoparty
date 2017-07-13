@@ -15,6 +15,6 @@ class TrackSerializer < ActiveModel::Serializer
   end
 
   def upvoted
-    scope.upvotes.map(&:track).include?(object)
+    object.upvotes.map(&:user_id)
   end
 end

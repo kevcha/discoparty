@@ -8,7 +8,7 @@ class Track extends Component {
   }
 
   vote = () => {
-    if (this.props.track.upvoted) {
+    if (this.props.upvoted) {
       this.downvote();
     } else {
       this.upvote();
@@ -30,7 +30,7 @@ class Track extends Component {
     });
     let upvoteClasses = classNames({
       'upvote': true,
-      'upvoted': this.props.track.upvoted
+      'upvoted': this.props.upvoted
     });
 
     return (

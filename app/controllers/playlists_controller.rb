@@ -1,5 +1,5 @@
 class PlaylistsController < ApplicationController
-  before_action :set_user, only: :new
+  before_action :set_user
 
   def new
     @playlist = current_user.playlists.build

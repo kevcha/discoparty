@@ -2,5 +2,4 @@
   <%= javascript_pack_tag 'application' %>
 <% end %>
 
-<section id="playlist" data-id="<%= @playlist.id %>">
-</section>
+<section id="playlist" data-playlist-id="<%= @playlist.id %>" data-user-id="<%= current_user.id %>"></section>

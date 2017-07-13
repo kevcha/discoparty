@@ -56,7 +56,7 @@ class Api::V1::TracksController < ApplicationController
 
   def broadcast
     PlaylistChannel.broadcast_to(@playlist, {
-      playlist: PlaylistSerializer.new(@playlist, scope: current_user).as_json
+      playlist: PlaylistSerializer.new(@playlist).as_json
     });
   end
 

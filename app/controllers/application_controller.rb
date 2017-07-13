@@ -4,4 +4,5 @@ class ApplicationController < ActionController::Base
   def current_user
     @user ||= User.find_by_uuid(cookies[:auth_token])
   end
+  helper_method :current_user
 end

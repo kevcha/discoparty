@@ -25,6 +25,7 @@ class Playlist extends Component {
     }, {
       received: (data) => {
         this.setState({ playlist: data.playlist });
+        this.loadTrack();
       }
     });
   }
@@ -34,18 +35,18 @@ class Playlist extends Component {
       .then(response => {
         const playlist = response.data.playlist;
         this.setState({ playlist });
-        if (this.state.playlist.tracks.length > 0) {
-          this.loadTrack();
-        }
+        this.loadTrack();
       });
   }
 
   loadTrack = () => {
-    let index = this.state.index;
-    let tracks = this.state.playlist.tracks;
-    let videoId = tracks[index].provider_track_id;
-    let url = `https://www.youtube.com/watch?v=${videoId}`;
-    this.setState({ url: url });
+    if (this.state.playlist.tracks.length > 0) {
+      let index = this.state.index;
+      let tracks = this.state.playlist.tracks;
+      let videoId = tracks[index].provider_track_id;
+      let url = `https://www.youtube.com/watch?v=${videoId}`;
+      this.setState({ url: url });
+    }
   }
 
   togglePlay = () => {
@@ -68,6 +69,10 @@ class Playlist extends Component {
     return track == current_track && this.state.playing;
   }
 
+  upvoted = (track) => {
+    return track.upvoted.includes(parseInt(this.props.userId));
+  }
+
   render() {
     let buttonLabel = this.state.playing ? 'Pause' : 'Play';
     return (
@@ -81,9 +86,15 @@ class Playlist extends Component {
             <h3>Tracklist</h3>
             <button className="small" onClick={this.togglePlay}>{buttonLabel}</button>
           </header>
-          <FlipMove duration={250}>
+          <FlipMove
+            duration={300}
+
+            easing={'cubic-bezier(0.25, 0.5, 0.75, 1)'}
+            staggerDurationBy={30}
+            staggerDelayBy={10}
+          >
             {this.state.playlist.tracks.map((track) => {
-              return <Track playing={this.isPlaying(track)} track={track} key={track.id} />;
+              return <Track playing={this.isPlaying(track)} upvoted={this.upvoted(track)} track={track} key={track.id} />;
             })}
           </FlipMove>
         </div>
