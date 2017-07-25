@@ -7,6 +7,9 @@ Rails.application.routes.draw do
       resource :search, only: :show
       resources :playlists, only: [:show] do
         resources :tracks, only: [:index, :create, :update, :destroy]
+        member do
+          post 'state', to: 'playlists#state'
+        end
       end
 
       resources :tracks, only: [] do
