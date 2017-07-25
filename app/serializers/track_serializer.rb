@@ -7,7 +7,10 @@ class TrackSerializer < ActiveModel::Serializer
     :provider_track_id,
     :duration,
     :upvotes,
-    :upvoted
+    :upvoted,
+    :url,
+    :played,
+    :playing
   )
 
   def upvotes
@@ -16,5 +19,17 @@ class TrackSerializer < ActiveModel::Serializer
 
   def upvoted
     object.upvotes.map(&:user_id)
+  end
+
+  def url
+    "https://www.youtube.com/watch?v=#{object.provider_track_id}"
+  end
+
+  def played
+    false
+  end
+
+  def playing
+    false
   end
 end
