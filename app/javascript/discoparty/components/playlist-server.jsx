@@ -4,6 +4,7 @@ import axios from 'axios';
 import Track from './track';
 import YoutubeAutocomplete from './youtube-autocomplete';
 import FlipMove from 'react-flip-move';
+import smartState from '../utils/state';
 
 class PlaylistServer extends Component {
   constructor(props) {
@@ -11,7 +12,8 @@ class PlaylistServer extends Component {
     this.state = {
       playlist: { tracks: [] },
       url: '',
-      index: 0
+      index: 0,
+      playing: false
     };
   }
 
@@ -23,42 +25,14 @@ class PlaylistServer extends Component {
       id: this.props.id
     }, {
       received: (response) => {
-        let state = this.createStateFrom(response);
+        let state = smartState(this.state, response);
         this.newState(state);
       }
     });
   }
 
-  createStateFrom = (response) => {
-    let tracks = response.playlist.tracks;
-    tracks.forEach((track) => {
-      track['played'] = this.played(track.id);
-      track['playing'] = this.playing(track.id);
-    });
-    let newState = this.state;
-    newState.playlist.tracks = tracks;
-    return newState;
-  }
-
-  played = (trackId) => {
-    let track = this.findTrack(trackId);
-    return track['played'];
-  }
-
-  playing = (trackId) => {
-    let track = this.findTrack(trackId);
-    return track['playing'];
-  }
-
-  findTrack = (trackId) => {
-    return this.state.playlist.tracks.find((track) => {
-      return track.id == trackId;
-    });
-  }
-
   newState = (state) => {
     this.setState(state);
-    // TODO: post new state to server to let it dispatch it to all clients
     axios.post(`/api/v1/playlists/${this.props.id}/state`, { state: this.state });
   }
 
@@ -72,8 +46,7 @@ class PlaylistServer extends Component {
   getInitialState = () => {
     axios.get(`/api/v1/playlists/${this.props.id}`)
       .then(response => {
-        let state = response.data;
-        state['index'] = 0;
+        let state = smartState(this.state, response.data);
         state['url'] = state.playlist.tracks[0].url;
         state.playlist.tracks[0].playing = true;
         this.newState(state);
