@@ -59,7 +59,7 @@ class PlaylistServer extends Component {
   newState = (state) => {
     this.setState(state);
     // TODO: post new state to server to let it dispatch it to all clients
-    axios.post(`/playlists/${playlistId}/state`, { state: this.state });
+    axios.post(`/api/v1/playlists/${this.props.id}/state`, { state: this.state });
   }
 
   updatePlaylist = (playlist) => {
