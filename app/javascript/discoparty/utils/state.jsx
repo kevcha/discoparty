@@ -1,5 +1,6 @@
 export default function smartState(state, changedState) {
   this.state = state;
+  this.state.playlist.name = changedState.playlist.name;
   this.tracks = changedState.playlist.tracks;
 
   var sortTracks = () => {
