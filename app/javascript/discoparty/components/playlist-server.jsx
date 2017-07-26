@@ -46,8 +46,10 @@ class PlaylistServer extends Component {
     axios.get(`/api/v1/playlists/${this.props.id}`)
       .then(response => {
         let state = smartState(this.state, response.data);
-        state['url'] = state.playlist.tracks[0].url;
-        state.playlist.tracks[0].playing = true;
+        if (state.playlist.tracks.length > 0) {
+          state['url'] = state.playlist.tracks[0].url;
+          state.playlist.tracks[0].playing = true;
+        }
         this.newState(state);
       });
   }

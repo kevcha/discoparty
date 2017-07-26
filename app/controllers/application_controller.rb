@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   private
 
   def set_user
-    if cookies[:auth_token].blank?
+    if cookies[:auth_token].blank? || !User.exists?(uuid: cookies[:auth_token])
       user = User.create
       cookies.permanent[:auth_token] = user.uuid
     end
