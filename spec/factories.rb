@@ -1,8 +1,7 @@
 FactoryGirl.define do
   factory :track do
     sequence(:title) { |n| "Title #{n}" }
-    sequence(:artist) { |n| "Artist #{n}" }
-    provider 'deezer'
+    provider 'youtube'
     provider_track_id '1234'
     playlist
   end
