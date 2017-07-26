@@ -57,6 +57,8 @@
     border-top: 1px solid darken($bg-color, 10%);
     display: flex;
     padding: modular-scale(0);
+    transition: border-radius ease 0.3s;
+    transition: background ease 0.3s;
 
     img {
       border-radius: 50%;
@@ -90,11 +92,15 @@
       }
     }
 
-    &.playing {
+    &.active.playing {
       background: $white;
       border-top: none;
       border-radius: 50px;
       transform: scale(1.1);
+    }
+
+    &.active {
+      background: darken($bg-color, 10%);
     }
 
     &.played {

@@ -26,7 +26,8 @@ class Track extends Component {
   render() {
     let trackClasses = classNames({
       'track': true,
-      'playing': this.props.playing
+      'playing': this.props.playing,
+      'active': this.props.active
     });
     let upvoteClasses = classNames({
       'upvote': true,

@@ -1,6 +1,6 @@
-export default function smartState(state, response) {
+export default function smartState(state, changedState) {
   this.state = state;
-  this.tracks = response.playlist.tracks;
+  this.tracks = changedState.playlist.tracks;
 
   var sortTracks = () => {
     this.tracks.forEach((track) => {

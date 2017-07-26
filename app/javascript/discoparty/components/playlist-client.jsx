@@ -8,7 +8,8 @@ class PlaylistClient extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      playlist: { tracks: [] }
+      playlist: { tracks: [] },
+      playing: false
     };
   }
 
@@ -62,7 +63,7 @@ class PlaylistClient extends Component {
             staggerDelayBy={10}
           >
             {this.tracks().map((track) => {
-              return <Track playing={track.playing && this.state.playing} upvoted={this.upvoted(track)} track={track} key={track.id} />;
+              return <Track playing={this.state.playing} active={track.playing} upvoted={this.upvoted(track)} track={track} key={track.id} />;
             })}
           </FlipMove>
         </div>

@@ -12,7 +12,6 @@ class PlaylistServer extends Component {
     this.state = {
       playlist: { tracks: [] },
       url: '',
-      index: 0,
       playing: false
     };
   }
@@ -61,18 +60,27 @@ class PlaylistServer extends Component {
 
   endCallback = () => {
     let state = this.state;
-    state.playlist.tracks[state.index].played = true;
-    state.playlist.tracks[state.index].playing = false;
+    let currentTrack = this.currentTrack();
+    currentTrack.played = true;
+    currentTrack.playing = false;
 
-    if (this.state.playlist.tracks.length > state.index + 1) {
-      state.index += 1;
-      state.url = state.playlist.tracks[state.index].url;
-      state.playlist.tracks[state.index].playing = true;
+    let nextTrack = this.nextTrack();
+    if (nextTrack) {
+      state.url = nextTrack.url;
+      nextTrack.playing = true;
     } else {
       state.playing = false;
     }
 
     this.newState(state);
+  }
+
+  currentTrack = () => {
+    return this.state.playlist.tracks.find(track => track.playing);
+  }
+
+  nextTrack = () => {
+    return this.state.playlist.tracks.find(track => !track.played);
   }
 
   isPlaying = (track) => {
@@ -115,7 +123,7 @@ class PlaylistServer extends Component {
             staggerDelayBy={10}
           >
             {this.tracks().map((track) => {
-              return <Track playing={track.playing && this.state.playing} upvoted={this.upvoted(track)} track={track} key={track.id} />;
+              return <Track playing={this.state.playing && track.playing} active={track.playing} upvoted={this.upvoted(track)} track={track} key={track.id} />;
             })}
           </FlipMove>
         </div>
