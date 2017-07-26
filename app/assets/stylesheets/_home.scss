@@ -2,9 +2,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
 
-.playlists-new, .playlists-create {
   header {
     padding: modular-scale(1);
     text-align: center;
@@ -29,22 +27,34 @@
   }
 
   form {
-    display: flex;
-
-    .input {
-      flex-grow: 1;
-    }
-
     input {
-      height: 50px;
-    }
-
-    input[type="submit"] {
-      margin-left: modular-scale(1);
+      width: 100%;
     }
   }
 
   footer {
     text-align: center;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .playlists-new, .playlists-create {
+    form {
+      display: flex;
+
+      .input {
+        flex: 1 0;
+      }
+
+      input {
+        height: 50px;
+      }
+
+      input[type="submit"] {
+        flex: 0 1;
+        margin-left: modular-scale(1);
+      }
+    }
   }
 }

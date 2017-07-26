@@ -1,6 +1,8 @@
 // Breakpoints
-$medium-screen: 600px;
-$large-screen: 900px;
+$small-screen: 576px;
+$medium-screen: 768px;
+$large-screen: 992px;
+$extra-large-screen: 1200px;
 
 // Typography
 $base-font-family: "Open Sans", "Helvetica", "sans-serif";
@@ -31,6 +33,10 @@ $black: #333745;
 $white: #EEF5DB;
 
 $bg-color: $green;
+
+// Font sizes
+$base-font-size: 70%;
+$medium-font-size: 100%;
 
 // Font Colors
 $base-font-color: lighten($black, 10%);

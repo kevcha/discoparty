@@ -1,7 +1,7 @@
 html {
   color: $base-font-color;
   font-family: $base-font-family;
-  font-size: 100%;
+  font-size: $base-font-size;
   line-height: $base-line-height;
 }
 
@@ -48,4 +48,13 @@ hr {
   border-right: 0;
   border-top: 0;
   margin: $base-spacing 0;
+}
+
+
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: $medium-screen) {
+  html {
+    font-size: $medium-font-size;
+  }
 }
