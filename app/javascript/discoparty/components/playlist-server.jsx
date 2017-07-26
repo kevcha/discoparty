@@ -25,6 +25,10 @@ class PlaylistServer extends Component {
     }, {
       received: (response) => {
         let state = smartState(this.state, response);
+        if (this.state.url == '' && state.playlist.tracks.length > 0) {
+          state['url'] = state.playlist.tracks[0].url;
+          state.playlist.tracks[0].playing = true;
+        }
         this.newState(state);
       }
     });
