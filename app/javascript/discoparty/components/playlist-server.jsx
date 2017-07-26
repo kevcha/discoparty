@@ -112,7 +112,11 @@ class PlaylistServer extends Component {
     return (
       <div>
         <h1>{this.state.playlist.name}</h1>
-        <p className="sharable-link">Link : http://www.discoparty.com/parties/{this.props.id}</p>
+        <p className="sharable-link">
+          Let people interact with your playlist, share the link<br/>
+          http://www.discoparty.herokuapp.com/parties/{this.props.id}
+        </p>
+
 
         <YoutubeAutocomplete playlistId={this.props.id} />
 
