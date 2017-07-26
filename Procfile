@@ -1,2 +1,1 @@
-web: bundle exec rails s
-webpacker: ./bin/webpack-dev-server
+web: bundle exec puma -p $PORT -C ./config/puma.rb
