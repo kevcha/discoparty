@@ -35,9 +35,9 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
 
   # Mount Action Cable outside main process or domain
-  # config.action_cable.mount_path = nil
-  # config.action_cable.url = 'wss://example.com/cable'
-  # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
+  config.middleware.use DiscopartyActionCable
+  config.action_cable.allowed_request_origins = [ "http://#{ENV.fetch('APPLICATION_HOST')}", "https://#{ENV.fetch('APPLICATION_HOST')}" ]
+  config.web_socket_server_url = "wss://#{ENV.fetch('APPLICATION_HOST')}/"
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true

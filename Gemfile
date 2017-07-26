@@ -29,6 +29,10 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
+group :production do
+  gem 'redis'
+end
+
 group :test do
   gem 'capybara-webkit'
   gem 'database_cleaner'
