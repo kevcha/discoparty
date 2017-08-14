@@ -1,4 +1,4 @@
-export default function smartState(state, changedState) {
+let smartState = (state, changedState) => {
   this.state = state;
   this.state.playlist.name = changedState.playlist.name;
   this.tracks = changedState.playlist.tracks;
@@ -39,3 +39,5 @@ export default function smartState(state, changedState) {
 
   return newState;
 }
+
+export default smartState;
