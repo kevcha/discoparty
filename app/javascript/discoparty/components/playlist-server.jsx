@@ -81,6 +81,10 @@ class PlaylistServer extends Component {
     this.newState(state);
   }
 
+  errorCallback = () => {
+    this.endCallback();
+  }
+
   currentTrack = () => {
     return this.state.playlist.tracks.find(track => track.playing);
   }
@@ -143,6 +147,7 @@ class PlaylistServer extends Component {
             url={this.state.url}
             playing={this.state.playing}
             onEnded={this.endCallback}
+            onError={this.errorCallback}
             width={1}
             height={1}
           />
