@@ -2,7 +2,7 @@ class YoutubeApi
   API_ENDPOINT = 'https://www.googleapis.com/youtube/v3/search'
 
   def self.search(query)
-      json_response_for(query).map do |track|
+    json_response_for(query).map do |track|
       {
         title: track['snippet']['title'],
         provider: 'youtube',
