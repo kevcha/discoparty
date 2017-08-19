@@ -13,5 +13,23 @@ Using this link, everyone will be able to add new tracks and upvote for some of 
 ## Technologies
 Rails / React / Webpack / ActionCable
 
+## Launch Discoparty locally
+Needed dependencies :
+* Postgresql
+* Bundler
+* Yarn
+
+Once cloned, launch
+* `bundle install`
+* `yarn`
+* `rails db:create db:migrate`
+
+And for the webserver
+* `bundle exec foreman start -f Procfile.dev`
+
+Foreman will launch the web server and webpack at the same time
+
+Then go on `http://localhost:3000` and enjoy !
+
 ## Licence
 MIT, Feel free to open PR, issues, etc.
