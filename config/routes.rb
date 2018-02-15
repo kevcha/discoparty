@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :users
+
   resources :playlists, only: [:new, :create, :show]
   resources :parties, only: :show, path: :party
 
