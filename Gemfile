@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 ruby '2.3.3'
 
 gem 'active_model_serializers'
+gem 'devise'
 gem 'bourbon'
 gem 'flutie'
 gem 'font-awesome-sass'
