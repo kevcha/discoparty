@@ -1,6 +1,7 @@
 class PlaylistsController < ApplicationController
-  def new
-    @playlist = current_user.playlists.build
+  def index
+    @playlists = current_user.playlists
+    @playlist = Playlist.new
   end
 
   def create

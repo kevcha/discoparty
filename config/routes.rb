@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resources :playlists, only: [:new, :create, :show]
+  resources :playlists, only: [:index, :create, :show]
   resources :parties, only: :show, path: :party
 
   namespace :api do
@@ -23,5 +23,5 @@ Rails.application.routes.draw do
     end
   end
 
-  root to: 'playlists#new'
+  root to: 'playlists#index'
 end
