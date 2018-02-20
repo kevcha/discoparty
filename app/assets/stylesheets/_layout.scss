@@ -1,7 +1,6 @@
 .container {
   margin: 0 auto;
-  padding: 15px;
-  width: 980px;
+  width: 100%;
 }
 
 .inline-links {
@@ -23,4 +22,20 @@
       content: '';
     }
   }
+}
+
+@media (min-width: $small-screen) {
+  .container { width: 540px; }
+}
+
+@media (min-width: $medium-screen) {
+  .container { width: 720px; }
+}
+
+@media (min-width: $large-screen) {
+  .container { width: 960px; }
+}
+
+@media (min-width: $extra-large-screen) {
+  .container { width: 1140px; }
 }

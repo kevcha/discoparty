@@ -2,12 +2,18 @@
   align-items: center;
   display: flex;
 
-  section {
-    margin: 0 auto;
-    width: 400px;
-  }
-
   button, input[type="submit"] {
     width: 100%;
+  }
+}
+
+.auth {
+  @include grid-column(12);
+}
+
+@media (min-width: $medium-screen) {
+  .auth {
+    @include grid-column(6);
+    @include grid-push(3);
   }
 }
