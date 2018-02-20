@@ -28,17 +28,12 @@ p {
 }
 
 a {
-  color: $action-color;
-  text-decoration-skip: ink;
+  color: lighten($base-font-color, 10%);
+  text-decoration: none;
   transition: color $base-duration $base-timing;
 
   &:hover {
-    color: shade($action-color, 25%);
-  }
-
-  &:focus {
-    outline: $focus-outline;
-    outline-offset: $focus-outline-offset;
+    color: $action-color;
   }
 }
 

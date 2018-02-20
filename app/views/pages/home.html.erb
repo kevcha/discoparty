@@ -1,0 +1,21 @@
+<header class="home-header">
+  <%= image_tag 'logo-unblinked-4x.png' %>
+  <h1>Music for everyone. Let's get the party started.</h1>
+</header>
+
+<section>
+  <%= simple_form_for(@playlist) do |f| %>
+    <%= f.input :name, label: false, placeholder: "Choose a playlist name", autofocus: true %>
+    <%= f.submit "Create" %>
+  <% end %>
+  <br>
+  <ul class="home-links">
+    <li><%= link_to 'Join a playlist', '#' %></li>
+    <li><%= link_to 'Sign in', new_user_session_path %></li>
+    <li><%= link_to 'Create an account', new_user_registration_path %></li>
+  </ul>
+</section>
+
+<footer>
+  Made with <%= icon('heart') %> by citizens of the world
+</footer>

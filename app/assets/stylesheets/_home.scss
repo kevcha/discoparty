@@ -1,4 +1,4 @@
-.playlists-new, .playlists-create {
+.pages-home, .playlists-create {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -35,11 +35,32 @@
   footer {
     text-align: center;
   }
+
+  .home-links {
+    display: flex;
+    justify-content: center;
+
+    li {
+      padding: 0 1.5em;
+      position: relative;
+
+      &:after {
+        content: "⦿";
+        position: absolute;
+        right: -6px;
+        top: 5%;
+      }
+
+      &:last-child:after {
+        content: '';
+      }
+    }
+  }
 }
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
-  .playlists-new, .playlists-create {
+  .pages-home, .playlists-create {
     form {
       display: flex;
 
