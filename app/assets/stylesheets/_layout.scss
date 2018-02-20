@@ -1,0 +1,26 @@
+.container {
+  margin: 0 auto;
+  padding: 15px;
+  width: 980px;
+}
+
+.inline-links {
+  display: flex;
+  justify-content: center;
+
+  li {
+    padding: 0 1.5em;
+    position: relative;
+
+    &:after {
+      color: lighten($base-font-color, 30%);
+      content: "•";
+      position: absolute;
+      right: -6px;
+    }
+
+    &:last-child:after {
+      content: '';
+    }
+  }
+}

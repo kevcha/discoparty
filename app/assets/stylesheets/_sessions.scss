@@ -1,0 +1,13 @@
+.devise-sessions {
+  align-items: center;
+  display: flex;
+
+  section {
+    margin: 0 auto;
+    width: 400px;
+  }
+
+  button, input[type="submit"] {
+    width: 100%;
+  }
+}
