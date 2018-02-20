@@ -24,6 +24,6 @@ class PlaylistsController < ApplicationController
     params
       .require(:playlist)
       .permit(:name)
-      .merge(user: current_user)
+      .merge(user_id: current_user.id)
   end
 end
