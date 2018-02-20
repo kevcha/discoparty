@@ -1,0 +1,18 @@
+<div class="container">
+  <section class="auth">
+    <h2>Create an account</h2>
+
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <div class="form-inputs">
+        <%= f.input :email, autofocus: true %>
+        <%= f.input :password %>
+      </div>
+      <br>
+      <div class="form-actions">
+        <%= f.button :submit, "Create" %>
+      </div>
+    <% end %>
+    <br>
+    <%= render "devise/shared/links" %>
+  </section>
+</div>

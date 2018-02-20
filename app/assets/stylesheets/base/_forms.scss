@@ -94,3 +94,8 @@ select {
     outline-offset: $focus-outline-offset;
   }
 }
+
+form abbr[title] {
+  border-bottom: none !important;
+  text-decoration: none !important;
+}
