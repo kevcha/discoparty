@@ -25,6 +25,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'letter_opener'
   gem 'listen', '~> 3.0.5'
   gem 'rspec-rails', '~> 3.5'
   gem 'spring'
