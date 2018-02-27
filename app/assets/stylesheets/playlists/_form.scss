@@ -1,0 +1,25 @@
+#new_playlist {
+  input {
+    width: 100%;
+  }
+}
+
+@media (min-width: $medium-screen) {
+  #new_playlist {
+    display: flex;
+
+    .input {
+      flex: 1 0;
+    }
+
+    input {
+      height: 50px;
+      margin-bottom: 0;
+    }
+
+    input[type="submit"] {
+      flex: 0 1;
+      margin-left: modular-scale(1);
+    }
+  }
+}

@@ -26,34 +26,7 @@
     width: 100%;
   }
 
-  form {
-    input {
-      width: 100%;
-    }
-  }
-
   footer {
     text-align: center;
-  }
-}
-
-@media (min-width: $medium-screen) {
-  .pages-home, .playlists-create {
-    form {
-      display: flex;
-
-      .input {
-        flex: 1 0;
-      }
-
-      input {
-        height: 50px;
-      }
-
-      input[type="submit"] {
-        flex: 0 1;
-        margin-left: modular-scale(1);
-      }
-    }
   }
 }

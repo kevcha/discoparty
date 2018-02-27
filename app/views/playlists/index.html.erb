@@ -1,0 +1,22 @@
+<div class="container">
+  <%= simple_form_for(@playlist) do |f| %>
+    <%= f.input :name, label: false, placeholder: "Create a new playlist", autofocus: true %>
+    <%= f.submit "Create" %>
+  <% end %>
+
+  <div class="playlists">
+    <% @playlists.each do |playlist| %>
+      <div class="playlist">
+        <p class="title"><%= playlist.name %></p>
+        <div class="previews">
+          <% playlist.tracks.take(4).each_with_index do |track, index| %>
+            <div class="preview-container-<%= index %>">
+              <%= image_tag(track.image_url) %>
+            </div>
+          <% end %>
+        </div>
+        <%= link_to '', playlist_path(playlist), class: 'link' %>
+      </div>
+    <% end %>
+  </div>
+</div>

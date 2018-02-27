@@ -9,7 +9,7 @@ class YoutubeApi
         provider_track_id: track['id']['videoId'],
         duration: nil,
         artist: track['channelTitle'],
-        image_url: track['snippet']['thumbnails']['default']['url']
+        image_url: track['snippet']['thumbnails']['medium']['url']
       }
     end
   end
