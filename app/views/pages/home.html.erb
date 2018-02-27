@@ -1,5 +1,5 @@
 <header class="home-header">
-  <%= image_tag 'logo-unblinked-4x.png' %>
+  <%= image_tag 'logo-unblinked-4x.png', class: 'logo' %>
   <h1>Music for everyone. Let's get the party started.</h1>
 </header>
 
@@ -11,8 +11,12 @@
   <br>
   <ul class="inline-links">
     <li><%= link_to 'Join a playlist', '#' %></li>
-    <li><%= link_to 'Sign in', new_user_session_path %></li>
-    <li><%= link_to 'Create an account', new_user_registration_path %></li>
+    <% if user_signed_in? %>
+      <li><%= link_to 'Jump to my playlists', playlists_path %></li>
+    <% else %>
+      <li><%= link_to 'Sign in', new_user_session_path %></li>
+      <li><%= link_to 'Create an account', new_user_registration_path %></li>
+    <% end %>
   </ul>
 </section>
 

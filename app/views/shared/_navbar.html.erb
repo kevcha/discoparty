@@ -1,0 +1,17 @@
+<nav class="navigation">
+  <%= link_to root_path do %>
+    <%= image_tag 'logo-unblinked-4x.png', class: 'logo' %>
+  <% end %>
+  <% if user_signed_in? %>
+    <ul class="list-flex">
+      <li><%= link_to 'My playlists', playlists_path %></li>
+      <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
+      <li><%= image_tag "https://api.adorable.io/avatars/80/#{current_user.email}", class: 'avatar' %></li>
+    </ul>
+  <% else %>
+    <ul class="list-flex">
+      <li><%= link_to 'Sign in', new_user_session_path %></li>
+      <li><%= link_to 'Sign up', new_user_registration_path %></li>
+    </ul>
+  <% end %>
+</nav>

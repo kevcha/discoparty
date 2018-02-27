@@ -24,6 +24,16 @@
   }
 }
 
+img.logo {
+  filter: brightness(0.3);
+}
+
+.list-flex {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
 @media (min-width: $small-screen) {
   .container { width: 540px; }
 }
