@@ -19,6 +19,10 @@ class PlaylistServer extends Component {
   componentDidMount = () => {
     this.getInitialState();
 
+    window.onbeforeunload = function() {
+       return "Leaving this page will stop the music";
+    };
+
     App.track = App.cable.subscriptions.create({
       channel: "PlaylistChannel",
       id: this.props.id
@@ -113,6 +117,7 @@ class PlaylistServer extends Component {
   }
 
   render() {
+    const playlistTracksClasses = this.state.playing ? 'playlist-tracks playing' : 'playlist-tracks';
     return (
       <div>
         <h1>{this.state.playlist.name}</h1>
@@ -124,7 +129,7 @@ class PlaylistServer extends Component {
 
         <YoutubeAutocomplete playlistId={this.props.id} />
 
-        <div className="playlist-tracks">
+        <div className={playlistTracksClasses}>
           <header>
             <h3>Tracklist</h3>
             <button className="small" onClick={this.togglePlay}>{this.action()}</button>
