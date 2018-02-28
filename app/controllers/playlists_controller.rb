@@ -16,6 +16,7 @@ class PlaylistsController < ApplicationController
 
   def show
     @playlist = Playlist.find(params[:id])
+    redirect_to root_path if current_user != @playlist.user
   end
 
   def join
