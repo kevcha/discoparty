@@ -60,9 +60,8 @@
     transition: border-radius ease 0.3s, transform ease 0.3s;
 
     img {
-      border-radius: 50%;
+      border-radius: $base-border-radius;
       height: 50px;
-      width: 50px;
     }
 
     p {
