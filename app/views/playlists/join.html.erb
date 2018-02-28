@@ -1,0 +1,7 @@
+<div class="container">
+  <h2>Join an existing playlist</h2>
+  <%= form_tag(join_path, method: :get, id: 'join_party') do %>
+    <input type="text" name="query" placeholder="Enter the name of the playlist" autofocus>
+    <%= button_to "Join" %>
+  <% end %>
+</div>

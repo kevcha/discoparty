@@ -1,11 +1,11 @@
-#new_playlist {
+#new_playlist, #join_party {
   input {
     width: 100%;
   }
 }
 
 @media (min-width: $medium-screen) {
-  #new_playlist {
+  #new_playlist, #join_party {
     display: flex;
 
     .input {
