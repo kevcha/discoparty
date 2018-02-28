@@ -123,7 +123,7 @@ class PlaylistServer extends Component {
         <h1>{this.state.playlist.name}</h1>
         <p className="sharable-link">
           Let people interact with your playlist, share the link<br/>
-          http://discoparty.herokuapp.com/party/{this.props.id}
+          {this.props.shareableUrl}
         </p>
 
 

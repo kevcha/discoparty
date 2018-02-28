@@ -6,7 +6,10 @@ import PlaylistClient from './components/playlist-client';
 document.addEventListener('DOMContentLoaded', () => {
   var playlist = document.querySelector('#playlist')
   if (playlist) {
-    ReactDOM.render(<PlaylistServer userId={playlist.dataset.userId} id={playlist.dataset.playlistId} />, playlist);
+    ReactDOM.render(<PlaylistServer
+                      userId={playlist.dataset.userId}
+                      shareableUrl={playlist.dataset.shareableUrl}
+                      id={playlist.dataset.playlistId} />, playlist);
   }
 });
 
