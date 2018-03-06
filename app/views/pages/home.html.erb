@@ -10,7 +10,7 @@
   <% end %>
   <br>
   <ul class="inline-links">
-    <li><%= link_to 'Join a playlist', '#' %></li>
+    <li><%= link_to 'Join a playlist', join_playlist_path %></li>
     <% if user_signed_in? %>
       <li><%= link_to 'Jump to my playlists', playlists_path %></li>
     <% else %>
