@@ -2,6 +2,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :playlists
-  has_many :upvotes
+  has_many :playlists, dependent: :destroy
+  has_many :upvotes, dependent: :destroy
 end
