@@ -57,7 +57,6 @@
     border-top: 1px solid darken($bg-color, 10%);
     display: flex;
     padding: modular-scale(0);
-    transition: border-radius ease 0.3s, transform ease 0.3s;
 
     img {
       border-radius: $base-border-radius;
@@ -74,7 +73,7 @@
       cursor: pointer;
       display: flex;
       flex-direction: column;
-      transition: transform ease 0.2s;
+      transition: transform3d ease 0.2s;
       padding: 10px;
 
       .fa {
@@ -94,6 +93,7 @@
       border-top: none;
       border-radius: 10px;
       transform: scale(1.1);
+      transition: transform ease 0.3s;
     }
 
     &.active {
