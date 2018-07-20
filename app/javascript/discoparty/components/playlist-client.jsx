@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import Track from './track';
-import YoutubeAutocomplete from './youtube-autocomplete';
-import FlipMove from 'react-flip-move';
+import React, { Component } from "react";
+import axios from "axios";
+import Track from "./track";
+import YoutubeAutocomplete from "./youtube-autocomplete";
+import FlipMove from "react-flip-move";
 
 class PlaylistClient extends Component {
   constructor(props) {
@@ -16,33 +16,39 @@ class PlaylistClient extends Component {
   componentDidMount = () => {
     this.getInitialState();
 
-    App.track = App.cable.subscriptions.create({
-      channel: "StateChannel",
-      id: this.props.id
-    }, {
-      received: (response) => {
-        this.setState(response.state);
+    App.track = App.cable.subscriptions.create(
+      {
+        channel: "StateChannel",
+        id: this.props.id
+      },
+      {
+        received: response => {
+          this.setState(response.state);
+        }
       }
-    });
-  }
+    );
+  };
 
   getInitialState = () => {
-    axios.get(`/api/v1/playlists/${this.props.id}`)
-      .then(response => {
-        let state = response.data;
-        this.setState(state);
-      });
-  }
+    axios.get(`/api/v1/playlists/${this.props.id}`).then(response => {
+      let state = response.data;
+      this.setState(state);
+    });
+  };
 
   tracks = () => {
-    return this.state.playlist.tracks.filter((track) => {
+    return this.state.playlist.tracks.filter(track => {
       return !track.played;
     });
-  }
+  };
 
-  upvoted = (track) => {
+  upvoted = track => {
     return track.upvoted.includes(parseInt(this.props.userId));
-  }
+  };
+
+  signIn = () => {
+    console.log("foo");
+  };
 
   render() {
     return (
@@ -57,13 +63,22 @@ class PlaylistClient extends Component {
           </header>
           <FlipMove
             duration={300}
-
-            easing={'cubic-bezier(0.25, 0.5, 0.75, 1)'}
+            easing={"cubic-bezier(0.25, 0.5, 0.75, 1)"}
             staggerDurationBy={30}
             staggerDelayBy={10}
           >
-            {this.tracks().map((track) => {
-              return <Track playing={this.state.playing} active={track.playing} upvoted={this.upvoted(track)} track={track} key={track.id} />;
+            {this.tracks().map(track => {
+              return (
+                <Track
+                  playing={this.state.playing}
+                  active={track.playing}
+                  upvoted={this.upvoted(track)}
+                  track={track}
+                  key={track.id}
+                  signInCallback={this.signIn}
+                  userId={this.props.userId}
+                />
+              );
             })}
           </FlipMove>
         </div>
