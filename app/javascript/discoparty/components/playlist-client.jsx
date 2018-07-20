@@ -1,15 +1,20 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Track from "./track";
+import SignInModal from "./sign-in-modal";
 import YoutubeAutocomplete from "./youtube-autocomplete";
 import FlipMove from "react-flip-move";
+import SweetAlert from "sweetalert-react";
+import "sweetalert/dist/sweetalert.css";
+import { renderToStaticMarkup } from 'react-dom/server';
 
 class PlaylistClient extends Component {
   constructor(props) {
     super(props);
     this.state = {
       playlist: { tracks: [] },
-      playing: false
+      playing: false,
+      showSignInModal: false
     };
   }
 
@@ -47,10 +52,25 @@ class PlaylistClient extends Component {
   };
 
   signIn = () => {
-    console.log("foo");
+    this.setState({ showSignInModal: true });
   };
 
   render() {
+    let modal;
+
+    if (this.props.userId != "") {
+      modal = "";
+    } else {
+      modal = <SweetAlert
+        show={this.state.showSignInModal}
+        title="You need to sign in before"
+        onConfirm={() => this.setState({ showSignInModal: false })}
+        customClass="authentication-modal"
+        html
+        text={renderToStaticMarkup(<SignInModal />)}
+      />
+    }
+
     return (
       <div>
         <h1>{this.state.playlist.name}</h1>
@@ -82,6 +102,7 @@ class PlaylistClient extends Component {
             })}
           </FlipMove>
         </div>
+        {modal}
       </div>
     );
   }
