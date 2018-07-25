@@ -116,6 +116,24 @@ class PlaylistServer extends Component {
     });
   }
 
+  jumpToTrack = (track) => {
+    let state = this.state;
+
+    this.state.playlist.tracks.some((playlistTrack) => {
+      if (playlistTrack.id != track.id) {
+        playlistTrack.played = true;
+        playlistTrack.playing = false;
+        return false;
+      } else {
+        playlistTrack.playing = true;
+        state.url = track.url;
+        return true;
+      }
+    });
+
+    this.newState(state);
+  }
+
   render() {
     const playlistTracksClasses = this.state.playing ? 'playlist-tracks playing' : 'playlist-tracks';
     return (
@@ -142,7 +160,17 @@ class PlaylistServer extends Component {
             staggerDelayBy={10}
           >
             {this.tracks().map((track) => {
-              return <Track playing={this.state.playing && track.playing} active={track.playing} upvoted={this.upvoted(track)} track={track} key={track.id} />;
+              return (
+                <Track
+                  playing={this.state.playing && track.playing}
+                  active={track.playing}
+                  upvoted={this.upvoted(track)}
+                  track={track}
+                  key={track.id}
+                  client={false}
+                  jumpCallback={this.jumpToTrack}
+                />
+              );
             })}
           </FlipMove>
         </div>

@@ -89,6 +89,11 @@
       }
     }
 
+    &.server:not(.active):hover {
+      background: darken($bg-color, 5%);
+      cursor: pointer;
+    }
+
     &.active.playing {
       border-top: none;
       border-radius: 10px;

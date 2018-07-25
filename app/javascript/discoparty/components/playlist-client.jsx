@@ -97,6 +97,7 @@ class PlaylistClient extends Component {
                   key={track.id}
                   signInCallback={this.signIn}
                   userId={this.props.userId}
+                  client={true}
                 />
               );
             })}

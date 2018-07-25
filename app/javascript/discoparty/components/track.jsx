@@ -7,7 +7,9 @@ class Track extends Component {
     super(props);
   }
 
-  vote = () => {
+  vote = (event) => {
+    event.stopPropagation();
+
     if (this.userSignedIn()) {
       if (this.props.upvoted) {
         this.downvote();
@@ -34,11 +36,18 @@ class Track extends Component {
     axios.delete(`/api/v1/tracks/${this.props.track.id}/vote`);
   };
 
+  jumpToTrack = () => {
+    if (!this.props.client) {
+      this.props.jumpCallback(this.props.track);
+    }
+  };
+
   render() {
     let trackClasses = classNames({
       track: true,
       playing: this.props.playing,
-      active: this.props.active
+      active: this.props.active,
+      server: !this.props.client
     });
     let upvoteClasses = classNames({
       upvote: true,
@@ -46,7 +55,7 @@ class Track extends Component {
     });
 
     return (
-      <li className={trackClasses} data-id="{this.props.id}">
+      <li className={trackClasses} data-id="{this.props.id}" onClick={this.jumpToTrack}>
         <img src={this.props.track.image_url} />
         <p>{this.props.track.title}</p>
         <div className={upvoteClasses} onClick={this.vote}>
