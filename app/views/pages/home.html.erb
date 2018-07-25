@@ -4,13 +4,13 @@
 </header>
 
 <section>
-  <%= simple_form_for(@playlist) do |f| %>
-    <%= f.input :name, label: false, placeholder: "Choose a playlist name", autofocus: true %>
-    <%= f.submit "Create" %>
+  <%= form_tag(joins_path, method: :get, id: 'join_party') do %>
+    <input type="text" name="query" placeholder="Enter the name of the playlist to join" autofocus>
+    <%= button_to "Search" %>
   <% end %>
   <br>
   <ul class="inline-links">
-    <li><%= link_to 'Join a playlist', join_playlist_path %></li>
+    <li><%= link_to 'Create a playlist', playlists_path %></li>
     <% if user_signed_in? %>
       <li><%= link_to 'Jump to my playlists', playlists_path %></li>
     <% else %>

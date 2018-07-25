@@ -1,0 +1,29 @@
+<section>
+  <% if @playlists.present? %>
+    <h1><%= pluralize(@playlists.count, 'playlist') %> found</h1>
+    <% @playlists.each do |playlist| %>
+      <div class="playlist">
+        <header>
+          <h2><%= "#{playlist.name}" %></h2>
+          <span class="author">By <%= playlist.user.username %></span>
+        </header>
+
+        <div class="playlist-infos">
+          <div class="tracks-images">
+            <% playlist.tracks.limit(5).each do |track| %>
+              <%= image_tag(track.image_url) %>
+            <% end %>
+          </div>
+        </div>
+
+        <p class="more-tracks"><%= playlist.tracks.count %> tracks</p>
+
+        <%= link_to '', party_path(playlist), class: 'playlist-link' %>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="panel">
+      <h2>Sorry, we didn't find any playlist matching your request :(</h2>
+    </div>
+  <% end %>
+</section>

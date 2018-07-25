@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :playlists, only: [:index, :create, :show]
   resources :parties, only: :show, path: :party
+  resources :joins, only: :index
 
   get :join, to: 'playlists#join', as: 'join_playlist'
   get :parties, to: 'parties#show'
