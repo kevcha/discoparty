@@ -72,6 +72,21 @@
       text-align: center;
     }
   }
+
+  .blankslate {
+    @include grid-column(12);
+
+    margin: $base-spacing;
+    text-align: center;
+
+    img {
+      max-height: 50vh;
+    }
+
+    h2 {
+      margin: $small-spacing;
+    }
+  }
 }
 
 @media (min-width: $small-screen) {

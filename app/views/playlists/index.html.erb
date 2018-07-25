@@ -4,19 +4,26 @@
     <%= f.submit "Create" %>
   <% end %>
 
-  <div class="playlists">
-    <% @playlists.each do |playlist| %>
-      <div class="playlist">
-        <p class="title"><%= playlist.name %></p>
-        <div class="previews">
-          <% playlist.tracks.take(4).each_with_index do |track, index| %>
-            <div class="preview-container-<%= index %>">
-              <%= image_tag(track.image_url) %>
-            </div>
-          <% end %>
+  <% if @playlists.present? %>
+    <div class="playlists">
+      <% @playlists.each do |playlist| %>
+        <div class="playlist">
+          <p class="title"><%= playlist.name %></p>
+          <div class="previews">
+            <% playlist.tracks.take(4).each_with_index do |track, index| %>
+              <div class="preview-container-<%= index %>">
+                <%= image_tag(track.image_url) %>
+              </div>
+            <% end %>
+          </div>
+          <%= link_to '', playlist_path(playlist), class: 'link' %>
         </div>
-        <%= link_to '', playlist_path(playlist), class: 'link' %>
-      </div>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="blankslate">
+      <%= image_tag 'hero.svg' %>
+      <h2>Be a Hero, create your first playlist!</h2>
+    </div>
+  <% end %>
 </div>
