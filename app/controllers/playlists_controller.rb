@@ -1,4 +1,6 @@
 class PlaylistsController < ApplicationController
+  skip_before_action :authenticate_user!, only: :join
+
   def index
     @playlists = current_user.playlists
     @playlist = Playlist.new

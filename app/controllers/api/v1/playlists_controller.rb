@@ -1,5 +1,6 @@
 class Api::V1::PlaylistsController < ApplicationController
   skip_before_filter :verify_authenticity_token, only: :state
+  skip_before_filter :authenticate_user!, only: :show
   before_action :set_playlist, only: [:show, :state]
 
   def show

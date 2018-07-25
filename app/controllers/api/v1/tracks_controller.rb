@@ -1,6 +1,7 @@
 class Api::V1::TracksController < ApplicationController
   before_action :set_playlist, except: [:upvote, :downvote]
   before_action :set_track, only: [:upvote, :downvote]
+  skip_before_action :authenticate_user!, only: [:index, :create]
   skip_before_action :verify_authenticity_token, only: [:create, :downvote, :upvote]
 
   def index
