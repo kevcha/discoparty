@@ -56,7 +56,7 @@ class Track extends Component {
 
     return (
       <li className={trackClasses} data-id="{this.props.id}" onClick={this.jumpToTrack}>
-        <img src={this.props.track.image_url} />
+        <div className={this.props.playing === false ? 'fa fa-music' : 'fa fa-pause'} />
         <p>{this.props.track.title}</p>
         <div className={upvoteClasses} onClick={this.vote}>
           <div className="fa fa-caret-up" />
