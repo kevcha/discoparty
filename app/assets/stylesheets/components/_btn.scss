@@ -1,0 +1,50 @@
+.playlist {
+  position: relative;
+  .hover-btn {
+    display: none;
+    z-index: 1;
+  }
+  &:hover {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    background: rgba(171, 209, 234, 0.8)!important;
+    .hover-btn {
+      position: absolute;
+      display: grid;
+      grid-row-gap: 30px;
+      text-align: center;
+      margin-top: 30px;
+    }
+    input.playlist-btn {
+      width: 100%;
+    }
+  }
+  .btn-playlist {
+    background-color: #e63462;
+    border: 0;
+    border-radius: 3px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Open Sans", "Helvetica", "sans-serif";
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    font-weight: 600;
+    line-height: 1;
+    padding: 0.75em 1.5em;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 150ms ease;
+    user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    &:hover{
+      background-color: #b82a4e;
+      color: #fff;
+    }
+  }
+  .previews {
+    z-index: -1;
+  }
+}
