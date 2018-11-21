@@ -8,6 +8,18 @@
     <div class="playlists">
       <% @playlists.each do |playlist| %>
         <div class="playlist">
+          <div class="hover-btn">
+            <div class="more">
+              <%= link_to 'Go to playlist', playlist_path(playlist), class: 'btn-playlist' %>
+            </div>
+            <div class="delete">
+              <%= button_to 'Delete',
+                            playlist,
+                            data: { confirm: 'Are you sure?' },
+                            method: :delete,
+                            class: 'playlist-btn' %>
+            </div>
+          </div>
           <p class="title"><%= playlist.name %></p>
           <div class="previews">
             <% playlist.tracks.take(4).each_with_index do |track, index| %>
@@ -16,7 +28,6 @@
               </div>
             <% end %>
           </div>
-          <%= link_to '', playlist_path(playlist), class: 'link' %>
         </div>
       <% end %>
     </div>
